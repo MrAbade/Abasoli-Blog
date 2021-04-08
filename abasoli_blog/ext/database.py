@@ -29,3 +29,5 @@ class Database(SQLAlchemy, metaclass=SingletonMeta):
 def init_app(app: Flask, db: Database = Database()):
     db.init_app(app)
     app.db = db
+
+    from abasoli_blog.blueprints.models.user_model import UserModel
