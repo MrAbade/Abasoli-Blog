@@ -31,6 +31,7 @@ class BaseModel(db.Model):
     )
 
     def save(self, app_session, auto_commit=False):
+        self.updated_at = datetime.now(timezone.utc)
         app_session.add(self)
 
         if auto_commit:
