@@ -23,8 +23,13 @@ def put_the_database_first(file_list: List[str]):
 
 def get_files_in_path(abs_path):
     _, _, file_list = next(walk(abs_path))
-    put_the_database_first(file_list)
-    file_list.remove("configuration.py")
+    try:
+        put_the_database_first(file_list)
+        file_list.remove("configuration.py")
+    except ValueError:
+        raise ValueError(
+            "You have to ensure that configurations and database modules are present"
+        )
     return file_list
 
 
